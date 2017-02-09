@@ -1,10 +1,20 @@
-export default function createStore(reducer){
+export default function createStore(countReducer){
+  let state;
 
-}
+  function dispatch(action){
+    state = countReducer(state, action)
+    render()
+  }
 
-// solution
-export default function createStore(reducer){
-}
+  function getState(){
+    return state
+  }
 
-function render(){
+  dispatch({type: '@@INIT'})
+
+  return {
+    dispatch: dispatch,
+    getState: getState
+  }
+
 }
